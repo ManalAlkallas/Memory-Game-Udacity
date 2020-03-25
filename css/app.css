@@ -89,6 +89,11 @@ h1 {
     font-size: 36px;
 }
 
+.deck .card.disabled{
+    pointer-events: none;
+
+}
+
 /*
  * Styles for the Score Panel
  */

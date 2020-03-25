@@ -1,19 +1,22 @@
 
 
-const icons1 = ["fa fa-diamond", "fa fa-diamond", "fa fa-heart", "fa fa-heart", "fa fa-compress", "fa fa-compress", "fa fa-bolt", "fa fa-bolt", "fa fa-cloud", "fa fa-cloud", "fa fa-times-circle", "fa fa-times-circle", "fa fa-car", "fa fa-car", "fa fa-exclamation-triangle", "fa fa-exclamation-triangle"]; 
+const icons1 = ["fa fa-diamond", "fa fa-diamond", "fa fa-heart", "fa fa-heart", "fa fa-compress", "fa fa-compress", "fa fa-bolt", "fa fa-bolt", "fa fa-cloud", "fa fa-cloud", "fa fa-times-circle", "fa fa-times-circle", "fa fa-car", "fa fa-car", "fa fa-exclamation-triangle", "fa fa-exclamation-triangle"];
 
-// Display the cards on the page
+//Display the cards on the page
 
 const cardContainer = document.querySelector(".deck");
-
 //Save the opened card in an array 
+
+
 var openedCards = [];
 var matchedCards = [];
 
+let moves = 0;
+
 //create the Cards
 
-function startUp() {
 
+function startUp() {
     var icons = shuffle(icons1);
     for (let i = 0; i < icons.length; i++) {
         let card = document.createElement("div");
@@ -26,11 +29,11 @@ function startUp() {
 
             let currentCard = this;
             let previousCard = openedCards[0];
-
+            addMove();
             //We have an existing opened card
             if (openedCards.length === 1) {
 
-                card.classList.add("open", "show");
+                card.classList.add("open", "show", "disabled");
                 openedCards.push(this);
 
                 //We should compare our 2 opened cards
@@ -42,30 +45,33 @@ function startUp() {
                     previousCard.classList.add("matched");
 
                     matchedCards.push(currentCard, previousCard);
+                    isOver();
 
                     // To reset out array
                     openedCards = [];
-                  
-
                 } else {
                     setTimeout(function () {
-                        currentCard.classList.remove("open", "show");
-                        previousCard.classList.remove("open", "show");
+                        currentCard.classList.remove("open", "show", "disabled");
+                        previousCard.classList.remove("open", "show", "disabled");
 
                         openedCards = [];
 
                         //Check if the game is over
-                        
-                    }, 500);
+
+                    }, 200);
+
                 }
+
+
             } else {
+
                 // We don't have any opened cards
-                card.classList.add("open", "show");
+                card.classList.add("open", "show", "disabled");
                 openedCards.push(this);
-                
+
             }
-            isOver();
         });
+
     }
 }
 
@@ -74,7 +80,21 @@ startUp();
 function isOver() {
     setTimeout(function () {
         if (matchedCards.length === icons1.length) {
-            alert("Game Over!")
+            Swal.fire({
+                title: 'Congratulation, \nYou did it in ' + moves / 2 + ' Moves',
+                showClass: {
+                    popup: 'animated fadeInDown faster'
+                },
+                hideClass: {
+                    popup: 'animated fadeOutUp faster'
+
+                }
+
+            }).then((result) => {
+                if (result.value) {
+                reset();
+                }
+            });
         }
     }, 100);
 }
@@ -82,9 +102,67 @@ function isOver() {
 function reset() {
     let x = document.getElementById("deck");
     x.innerHTML = "";
-
+    moves = 0;
+    movesContainer.innerHTML = 0;
+    starsContainer.innerHTML = star + star + star;
     startUp();
 }
+
+//Add Move function
+
+let movesContainer = document.querySelector(".moves");
+movesContainer.innerHTML = 0;
+
+//movesContainer.innerHTML = 0;
+function addMove() {
+    ++moves;
+    if (moves % 2 === 0) {
+        movesContainer.innerHTML = moves / 2;
+
+    }
+
+
+    // Set the rating
+    rating();
+}
+//Rating
+
+const starsContainer = document.querySelector(".stars");
+const star = `<li><i class="fa fa-star"></i></li>`;
+starsContainer.innerHTML = star + star + star;
+function rating() {
+    if (moves / 2 < 10) {
+        starsContainer.innerHTML = star + star + star;
+    } else if (moves / 2 < 15) {
+        starsContainer.innerHTML = star + star;
+    } else {
+        starsContainer.innerHTML = star;
+    }
+}
+
+//Timer inspired by https://stackoverflow.com/questions/20618355/the-simplest-possible-javascript-countdown-timer
+function timer() {
+    let minutes = 0;
+    let seconds = 0;
+    gameInterval = setInterval(function () {
+        seconds = parseInt(seconds, 10) + 1;
+        minutes = parseInt(minutes, 10);
+        if (seconds >= 60) {
+            minutes += 1;
+            seconds = 0;
+        }
+
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+
+        time.innerHTML = minutes + ":" + seconds;
+        lastTime.textContent = time.textContent;
+        // console.log(time,"hellooooo are you there????");
+    }, 1000);
+}
+
+
+
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(arr1) {
@@ -98,15 +176,3 @@ function shuffle(arr1) {
     }
     return arr1;
 }
-
-
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
