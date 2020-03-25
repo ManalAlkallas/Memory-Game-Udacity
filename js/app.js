@@ -1,10 +1,12 @@
 
 
-const icons1 = ["fa fa-diamond", "fa fa-diamond", "fa fa-heart", "fa fa-heart", "fa fa-compress", "fa fa-compress", "fa fa-bolt", "fa fa-bolt", "fa fa-cloud", "fa fa-cloud", "fa fa-times-circle", "fa fa-times-circle", "fa fa-car", "fa fa-car", "fa fa-exclamation-triangle", "fa fa-exclamation-triangle"]; // Alt + Z to toggle wrap the whole page 
+const icons1 = ["fa fa-diamond", "fa fa-diamond", "fa fa-heart", "fa fa-heart", "fa fa-compress", "fa fa-compress", "fa fa-bolt", "fa fa-bolt", "fa fa-cloud", "fa fa-cloud", "fa fa-times-circle", "fa fa-times-circle", "fa fa-car", "fa fa-car", "fa fa-exclamation-triangle", "fa fa-exclamation-triangle"]; 
 
 // Display the cards on the page
 
 const cardContainer = document.querySelector(".deck");
+
+//Save the opened card in an array 
 var openedCards = [];
 var matchedCards = [];
 
@@ -16,7 +18,7 @@ function startUp() {
     for (let i = 0; i < icons.length; i++) {
         let card = document.createElement("div");
         card.classList.add("card");
-        card.innerHTML = `<i class="${icons[i]}"></i>`;
+        card.innerHTML = `<i class="${icons[i]}"></i>`; //Template literal
         cardContainer.appendChild(card);
 
         // Card Click Event
@@ -43,7 +45,7 @@ function startUp() {
 
                     // To reset out array
                     openedCards = [];
-                    isOver();
+                  
 
                 } else {
                     setTimeout(function () {
@@ -53,15 +55,16 @@ function startUp() {
                         openedCards = [];
 
                         //Check if the game is over
-
-
+                        
                     }, 500);
                 }
             } else {
                 // We don't have any opened cards
                 card.classList.add("open", "show");
                 openedCards.push(this);
+                
             }
+            isOver();
         });
     }
 }
@@ -70,7 +73,7 @@ startUp();
 
 function isOver() {
     setTimeout(function () {
-        if (matchedCards.length === icons.length) {
+        if (matchedCards.length === icons1.length) {
             alert("Game Over!")
         }
     }, 100);

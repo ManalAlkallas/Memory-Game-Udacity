@@ -32,6 +32,7 @@ body {
 h1 {
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
+    font-variant: small-caps;
 }
 
 /*
@@ -71,9 +72,10 @@ h1 {
 }
 
 .deck .card.open {
-    transform: rotateY(0);
+   transform: rotateY(0);
     background: #02b3e4;
-    cursor: default;
+    cursor: default;    
+ 
 
 }
 
