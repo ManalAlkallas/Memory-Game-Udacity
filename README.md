@@ -1,20 +1,65 @@
 # Memory Game Project
 
+Memory Game is a complete browser-based card matching game. 
+
+You can access the memory game from [this link](https://htmlpreview.github.io/?https://github.com/ManalAlkallas/Memory-Game-Udacity/blob/master/index.html).
+
 ## Table of Contents
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+* [Game Rules](#game-rules)
+* [Rating](#Rating)
+* [Technical](#technical)
+* [Credits](#credits)
+* [Tools Used](#tools-used)
 
-## Instructions
+## Game Rules
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+The game board consists of sixteen "cards" arranged in a grid. The deck is made up of eight different pairs of cards, each with different symbols on one side. The cards are arranged randomly on the grid with the symbol face down. The gameplay rules are very simple: flip over two hidden cards at a time to locate the ones that match!
 
-To get started, open `js/app.js` and start building out the app's functionality
+Each turn:
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+* The player flips one card over to reveal its underlying symbol.
+* The player then turns over a second card, trying to find the corresponding card with the same symbol.
+* If the cards match, both cards stay flipped over.
+* If the cards do not match, both cards are flipped face down.
+* The game ends once all cards have been correctly matched.
 
-## Contributing
+1.Correct match
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
 
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+
+2.Completed board
+
+
+
+3.Game over modal
+
+
+## Rating
+The rating depends on the number of moves:
+
+?????? If the moves are between 8 and 11.
+???? If the moves are between 12 and 19.
+?? If the moves are 20 or more.
+The game ends once all cards have been correctly matched. The player could restart the game at any time by clicking on the restart icon.
+
+Resources
+
+## Technical
+
+This project consists of the following assets:
+
+* **index.html**  - contains the game's html structure.
+* **main.css** - contains the game's board styling.
+* **app.js** - contains all the board actions & logic.
+
+## Credits
+
+* For shuffling the cards **shuffle** javaScript function was used from http://stackoverflow.com/a/2450976
+* Timer inspired by https://stackoverflow.com/questions/20618355/the-simplest-possible-javascript-countdown-timer
+
+## Tools Used
+
+* [Fontawesome](http://fontawesome.io/icons/) was used to display game card's icons.
+* [Sweetalert2](https://sweetalert2.github.io/)
+
