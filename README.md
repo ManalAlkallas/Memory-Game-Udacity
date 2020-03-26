@@ -6,11 +6,22 @@ You can access the memory game from [this link](https://htmlpreview.github.io/?h
 
 ## Table of Contents
 
+* [The Process of building the game](#the-process-of-building-the-game)
 * [Game Rules](#game-rules)
-* [Rating](#Rating)
+* [Rating](#rating)
 * [Technical](#technical)
 * [Credits](#credits)
 * [Tools Used](#tools-used)
+
+## The Process of building the game:
+
+* Cards are to be shuffled on load or restart
+* Game should know how to handle matched and unmatched cards
+* Game should display the current number of moves a user has made
+* The game should show a star rating (from 1–3) that reflects the player’s performance based on the number of moves made.
+* When a player starts a game, a displayed timer should also start and once the player wins the game, the timer stops.
+* A restart button should allow the player reset the game board, the timer, and the star rating.
+* A congratulations modal should appear when the player wins while showing a button to play again and modal should show: How much time it took, and star rating.
 
 ## Game Rules
 
@@ -23,6 +34,8 @@ Each turn:
 * If the cards match, both cards stay flipped over.
 * If the cards do not match, both cards are flipped face down.
 * The game ends once all cards have been correctly matched.
+
+
 
 1.Correct match
 
