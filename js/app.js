@@ -1,21 +1,19 @@
 
-
 const icons1 = ["fa fa-diamond", "fa fa-diamond", "fa fa-heart", "fa fa-heart", "fa fa-compress", "fa fa-compress", "fa fa-bolt", "fa fa-bolt", "fa fa-cloud", "fa fa-cloud", "fa fa-times-circle", "fa fa-times-circle", "fa fa-car", "fa fa-car", "fa fa-exclamation-triangle", "fa fa-exclamation-triangle"];
 
 //Display the cards on the page
 
 const cardContainer = document.querySelector(".deck");
+
 //Save the opened card in an array 
-
-
 var openedCards = [];
+
+//Save the matched card in an array 
 var matchedCards = [];
 
 let moves = 0;
 
 //create the Cards
-
-
 function startUp() {
     var icons = shuffle(icons1);
     for (let i = 0; i < icons.length; i++) {
@@ -26,10 +24,13 @@ function startUp() {
 
         // Card Click Event
         card.addEventListener("click", function () {
-
+            timer();
             let currentCard = this;
             let previousCard = openedCards[0];
+            
             addMove();
+           
+           
             //We have an existing opened card
             if (openedCards.length === 1) {
 
@@ -77,11 +78,27 @@ function startUp() {
 
 startUp();
 
+
+// Shuffle function from http://stackoverflow.com/a/2450976
+function shuffle(arr1) {
+    let currentIndex = arr1.length, temporaryValue, randomIndex; // define 3 variables ,current , random generate a number between 0 - 1 (Decimal Number)
+    while (currentIndex !== 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex); //Math random generate to random number - floor means the lowest integer value , No Decimal values
+        currentIndex -= 1; // because the index starts with 0
+        temporaryValue = arr1[currentIndex];
+        arr1[currentIndex] = arr1[randomIndex];
+        arr1[randomIndex] = temporaryValue;
+    }
+    return arr1;
+}
+
+
 function isOver() {
     setTimeout(function () {
         if (matchedCards.length === icons1.length) {
+            clearInterval(gameInterval);
             Swal.fire({
-                title: 'Congratulation, \nYou did it in ' + moves / 2 + ' Moves',
+                title: 'Congratulations, \nYou completed the game in ' + moves / 2 + ' Moves and in ' +document.querySelector(".displayTime").innerHTML, 
                 showClass: {
                     popup: 'animated fadeInDown faster'
                 },
@@ -99,6 +116,9 @@ function isOver() {
     }, 100);
 }
 
+
+
+
 function reset() {
     let x = document.getElementById("deck");
     x.innerHTML = "";
@@ -106,6 +126,10 @@ function reset() {
     movesContainer.innerHTML = 0;
     starsContainer.innerHTML = star + star + star;
     startUp();
+    clearInterval(gameInterval);
+    done = false;
+    document.querySelector(".displayTime").innerHTML="00:00";
+
 }
 
 //Add Move function
@@ -131,17 +155,27 @@ const starsContainer = document.querySelector(".stars");
 const star = `<li><i class="fa fa-star"></i></li>`;
 starsContainer.innerHTML = star + star + star;
 function rating() {
-    if (moves / 2 < 10) {
+    if (moves / 2 < 11) {
         starsContainer.innerHTML = star + star + star;
-    } else if (moves / 2 < 15) {
+    } else if (moves / 2 < 17) {
         starsContainer.innerHTML = star + star;
     } else {
         starsContainer.innerHTML = star;
     }
 }
 
-//Timer inspired by https://stackoverflow.com/questions/20618355/the-simplest-possible-javascript-countdown-timer
+
+// Time variables
+let time = document.querySelector('.displayTime');
+let startGame = 0;
+let gameInterval;
+
+
+//Timer function from https://stackoverflow.com/questions/20618355/the-simplest-possible-javascript-countdown-timer
+var done = false;
 function timer() {
+    if(done)
+    return;
     let minutes = 0;
     let seconds = 0;
     gameInterval = setInterval(function () {
@@ -157,22 +191,8 @@ function timer() {
 
         time.innerHTML = minutes + ":" + seconds;
         lastTime.textContent = time.textContent;
-        // console.log(time,"hellooooo are you there????");
     }, 1000);
+
+    done = true;
 }
 
-
-
-
-// Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(arr1) {
-    let currentIndex = arr1.length, temporaryValue, randomIndex; // define 3 variables ,current , random generate a number between 0 - 1 (Decimal Number)
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex); //Math random generate to random number - floor means the lowest integer value , No Decimal values
-        currentIndex -= 1; // because the index starts with 0
-        temporaryValue = arr1[currentIndex];
-        arr1[currentIndex] = arr1[randomIndex];
-        arr1[randomIndex] = temporaryValue;
-    }
-    return arr1;
-}
