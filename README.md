@@ -48,9 +48,9 @@ Each turn:
 ## Rating
 The rating depends on the number of moves:
 
-3 Stars: If the moves are between 8 and 10.
-2 stars: If the moves are between 11 and 16.
-1 star: If the moves are 17 or more.
+* 3 Stars: If the moves are between 8 and 10.
+* 2 stars: If the moves are between 11 and 16.
+* 1 star: If the moves are 17 or more.
 The game ends once all cards have been correctly matched. The player could restart the game at any time by clicking on the restart icon.
 
 Resources
