@@ -99,9 +99,18 @@ h1 {
  */
 
 .score-panel {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     text-align: left;
-    width: 345px;
+    width: 456px;
     margin-bottom: 10px;
+    border-radius: 10px;
+    border-style: solid;
+    border-color:#304c68 ;
+    border-radius: 25px;
+    padding: 10px;
+    background: linear-gradient(160deg, #b9def7 0%, #72b9e7 100%);
 }
 
 .score-panel .stars {
@@ -119,4 +128,15 @@ h1 {
 .score-panel .restart {
     float: right;
     cursor: pointer;
+    color: #fff;
+    background-color: rgba(173, 190, 225, 0.6);
+    box-sizing: border-box;
+    outline: none;
+
+}
+
+
+.counter span {
+    display: inline-block;
+    width: 100%;
 }
