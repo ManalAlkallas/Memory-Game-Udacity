@@ -2,7 +2,11 @@
 
 Memory Game is a complete browser-based card matching game. 
 
-You can access the memory game from [this link](https://github.com/ManalAlkallas/Memory-Game-Udacity/blob/master/index.html).
+You can access the memory game from [this link](https://htmlpreview.github.io/?https://github.com/ManalAlkallas/Memory-Game-Udacity/blob/master/index.html).
+
+
+
+
 
 ## Table of Contents
 
