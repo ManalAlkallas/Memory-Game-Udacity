@@ -1,4 +1,4 @@
-# Memory Game Project
+﻿# Memory Game Project
 
 Memory Game is a complete browser-based card matching game. 
 
@@ -36,24 +36,21 @@ Each turn:
 * The game ends once all cards have been correctly matched.
 
 
-
 1.Correct match
 
-
+![select](/img/correct-match.png)
 
 2.Completed board
 
-
-
-3.Game over modal
+![select](/img/completed.png)
 
 
 ## Rating
 The rating depends on the number of moves:
 
-?????? If the moves are between 8 and 11.
-???? If the moves are between 12 and 19.
-?? If the moves are 20 or more.
+3 Stars: If the moves are between 8 and 10.
+2 stars: If the moves are between 11 and 16.
+1 star: If the moves are 17 or more.
 The game ends once all cards have been correctly matched. The player could restart the game at any time by clicking on the restart icon.
 
 Resources
@@ -74,5 +71,5 @@ This project consists of the following assets:
 ## Tools Used
 
 * [Fontawesome](http://fontawesome.io/icons/) was used to display game card's icons.
-* [Sweetalert2](https://sweetalert2.github.io/)
+* [Sweetalert2](https://sweetalert2.github.io/) was used to display the message at the end of the game.
 
